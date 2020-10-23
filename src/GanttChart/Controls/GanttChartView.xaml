@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<controlsbase:GanttChartViewBase
+    x:Class="GanttChart.Controls.GanttChartView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controlsbase="clr-namespace:GanttChart.Controls.Base"
+    xmlns:controls="clr-namespace:GanttChart.Controls"
+    xmlns:models="clr-namespace:GanttChart.Models"
+    x:Name="ganttChart"
+    x:TypeArguments="models:GanttSection, models:GanttEntry">
+    <controlsbase:GanttChartViewBase.Resources>
+        <DataTemplate x:Key="GanttSectionTemplate">
+            <Grid
+                HeightRequest="{Binding Source={x:Reference ganttChart}, Path=ChartHeight}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="{Binding ColumnWidthWithSeparator}">
+                <controls:GanttChartSectionView
+                    BackgroundColor="{Binding Source={x:Reference ganttChart}, Path=BackgroundColor}"
+                    ColumnWidth="{Binding ColumnWidth}"
+                    EntriesSource="{Binding Source={x:Reference ganttChart}, Path=Entries}"
+                    ForceRedraw="{Binding Source={x:Reference ganttChart}, Path=ForceRedraw}"
+                    HeaderCellColor="{Binding Source={x:Reference ganttChart}, Path=HeaderCellColor}"
+                    HeaderHeight="{Binding Source={x:Reference ganttChart}, Path=HeaderHeight}"
+                    HeaderTextColor="{Binding Source={x:Reference ganttChart}, Path=HeaderTextColor}"
+                    HeaderTextSize="{Binding Source={x:Reference ganttChart}, Path=HeaderTextSize}"
+                    HeaderTextStyleWeight="{Binding Source={x:Reference ganttChart}, Path=HeaderTextStyleWeight}"
+                    HeightRequest="{Binding Source={x:Reference ganttChart}, Path=ChartHeight}"
+                    HorizontalOptions="Fill"
+                    Order="{Binding Order}"
+                    SectionName="{Binding SectionName}"
+                    SeparatorLineColor="{Binding Source={x:Reference ganttChart}, Path=SeparatorLineColor}"
+                    SeparatorLineHeight="{Binding Source={x:Reference ganttChart}, Path=SeparatorLineHeight}"
+                    SubHeaderCellColor="{Binding Source={x:Reference ganttChart}, Path=SubHeaderCellColor}"
+                    SubHeaderHeight="{Binding Source={x:Reference ganttChart}, Path=SubHeaderHeight}"
+                    SubHeaderTextColor="{Binding Source={x:Reference ganttChart}, Path=SubHeaderTextColor}"
+                    SubHeaderTextSize="{Binding Source={x:Reference ganttChart}, Path=SubHeaderTextSize}"
+                    SubHeaderTextStyleWeight="{Binding Source={x:Reference ganttChart}, Path=SubHeaderTextStyleWeight}"
+                    SubHeadersSource="{Binding SubHeaders}"
+                    VerticalOptions="Fill"
+                    WidthRequest="{Binding ColumnWidthWithSeparator}" />
+            </Grid>
+        </DataTemplate>
+    </controlsbase:GanttChartViewBase.Resources>
+    <Grid ColumnSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding Source={x:Reference ganttChart}, Path=DetailWidth}" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackLayout
+            BackgroundColor="{Binding Source={x:Reference ganttChart}, Path=DetailBackgroundColor}"
+            HorizontalOptions="FillAndExpand"
+            Spacing="0">
+            <Grid HeightRequest="{Binding Source={x:Reference ganttChart}, Path=DetailHeaderCellHeight}">
+                <Label Style="{Binding Source={x:Reference ganttChart}, Path=DetailHeaderTextStyle}" />
+            </Grid>
+
+            <BoxView
+                BackgroundColor="{Binding Source={x:Reference ganttChart}, Path=SeparatorLineColor}"
+                HeightRequest="{Binding Source={x:Reference ganttChart}, Path=SeparatorLineHeight}"
+                HorizontalOptions="FillAndExpand" />
+
+            <StackLayout
+                BindableLayout.ItemsSource="{Binding Entries}"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0"
+                VerticalOptions="FillAndExpand">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnSpacing="0" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{Binding RawHeight}" />
+                                <RowDefinition Height="{Binding Source={x:Reference ganttChart}, Path=SeparatorLineHeight}" />
+                            </Grid.RowDefinitions>
+                            <Label Style="{Binding Source={x:Reference ganttChart}, Path=GanttEntryDetailStyle}" Text="{Binding Name}" />
+                            <BoxView
+                                Grid.Row="1"
+                                BackgroundColor="{Binding Source={x:Reference ganttChart}, Path=SeparatorLineColor}"
+                                HeightRequest="{Binding Source={x:Reference ganttChart}, Path=SeparatorLineHeight}"
+                                HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </StackLayout>
+
+        <CollectionView
+            Grid.Column="1"
+            HeightRequest="{Binding Source={x:Reference ganttChart}, Path=ChartHeight}"
+            HorizontalOptions="FillAndExpand"
+            ItemTemplate="{StaticResource GanttSectionTemplate}"
+            ItemsSource="{Binding Source={x:Reference ganttChart}, Path=GanttSections}"
+            SelectionMode="None"
+            VerticalOptions="FillAndExpand">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+    </Grid>
+</controlsbase:GanttChartViewBase>
