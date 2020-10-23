@@ -14,3 +14,4 @@ Simple cross-platform library to create Gantt Chart
 |Xamarin.Android|API 14+|
 |Windows 10 UWP|10+|
 |Tizen|4+|
+
