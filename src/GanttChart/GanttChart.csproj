@@ -3,6 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
+    <PackageId>Xam.GanttChart</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>mak100un</Authors>
+    <Company>incompany</Company>
+    <Product>Xam.GanttChart</Product>
+    <Description>Library to create cross-platform Gantt Chart (for Xamarin and Windows)</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/mak100un/GanttChart</RepositoryUrl>
+    <PackageTags>GanttChart, Gannt, Chart, Xamarin, Xamarin.Forms</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

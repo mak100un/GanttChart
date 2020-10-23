@@ -9,7 +9,7 @@ namespace GanttChartSample.Droid
     [Activity
     (
         Label = "GanttChartSample",
-        Icon = "@mipmap/icon", 
+        Icon = "@drawable/GanttChart", 
         Theme = "@style/MainTheme",
         MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize 
