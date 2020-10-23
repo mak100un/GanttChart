@@ -1,10 +1,12 @@
 ## GanttChart for Xamarin and Windows
 Simple cross-platform library to create Gantt Chart
 
+
 ### Setup
 * Available on NuGet: https://www.nuget.org/packages/Xam.GanttChart/
 * Install into your .NET Standard project and Client projects.
 * This package has no need to any setup in all. Just install it and SkiaSharp and use!!!
+
 
 **Platform Support**
 
@@ -15,3 +17,6 @@ Simple cross-platform library to create Gantt Chart
 |Windows 10 UWP|10+|
 |Tizen|4+|
 
+![icon1](https://github.com/mak100un/GanttChart/blob/main/img/gantt_1.jpg)
+
+![icon2](https://github.com/mak100un/GanttChart/blob/main/img/gantt_2.jpg)
