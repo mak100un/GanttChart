@@ -3,7 +3,7 @@ name: GanttChart-CI
 env:
   CORE_PROJECT_PATH: "GanttChart/samples/GanttChartSample/GanttChartSample/GanttChartSample.csproj"
   ANDROID_PROJECT_PATH: "GanttChart/samples/GanttChartSample/GanttChartSample.Android/GanttChartSample.Android.csproj"
-  CONFIGURATION: "Release"
+  CONFIGURATION: "Debug"
 
 on:
   push:
@@ -35,9 +35,9 @@ jobs:
         nuget restore ${{ env.ANDROID_PROJECT_PATH }}
 
     - name: Build
-      run: msbuild ${{ env.CORE_PROJECT_PATH }} /p:Configuration=${{ env.CONFIGURATION }} /verbosity:normal /t:Rebuild /t:PackageForAndroid /t:SignAndroidPackage 
+      run: msbuild ${{ env.ANDROID_PROJECT_PATH }} /verbosity:normal /t:Rebuild /t:PackageForAndroid /t:SignAndroidPackage /p:Configuration=${{ env.CONFIGURATION }}
     
     - uses: actions/upload-artifact@v2
       with:
         name: Android App
-        path: Blank/Blank.Android/bin/Debug/com.tfp.blank-Signed.apk   
+        path: GanttChart/samples/GanttChartSample/GanttChartSample.Android/bin/Debug/com.tfp.blank-Signed.apk   
