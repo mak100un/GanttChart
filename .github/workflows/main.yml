@@ -1,0 +1,43 @@
+name: GanttChart-CI
+
+env:
+  CORE_PROJECT_PATH: "GanttChart/samples/GanttChartSample/GanttChartSample/GanttChartSample.csproj"
+  ANDROID_PROJECT_PATH: "GanttChart/samples/GanttChartSample/GanttChartSample.Android/GanttChartSample.Android.csproj"
+  CONFIGURATION: "Release"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+ 
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: macos-latest
+    
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    - name: Set default Xamarin SDK versions
+      run: |
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.10 --android=10.2
+        
+    - name: Setup .NET Core SDK 5.0.12
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.12'
+        
+    - name: Install dependencies
+      run: |
+        nuget restore ${{ env.CORE_PROJECT_PATH }}
+        nuget restore ${{ env.ANDROID_PROJECT_PATH }}
+
+    - name: Build
+      run: msbuild ${{ env.CORE_PROJECT_PATH }} /p:Configuration=${{ env.CONFIGURATION }} /verbosity:normal /t:Rebuild /t:PackageForAndroid /t:SignAndroidPackage 
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Android App
+        path: Blank/Blank.Android/bin/Debug/com.tfp.blank-Signed.apk   
