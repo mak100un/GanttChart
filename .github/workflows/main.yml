@@ -24,10 +24,10 @@ jobs:
       run: |
         $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.10 --android=10.2
         
-    - name: Setup .NET Core SDK 5.0.12
+    - name: Setup .NET Core SDK 5.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.12'
+        dotnet-version: '5.0.x'
         
     - name: Install dependencies
       run: |
@@ -40,4 +40,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: Android App
-        path: GanttChart/samples/GanttChartSample/GanttChartSample.Android/bin/Debug/com.tfp.blank-Signed.apk   
+        path: GanttChart/samples/GanttChartSample/GanttChartSample.Android/bin/Debug/com.incompany.ganttchartsample-Signed.apk   
