@@ -1,9 +1,10 @@
 name: GanttChart-CI
 
 env:
-  CORE_PROJECT_PATH: "samples/GanttChartSample/GanttChartSample/GanttChartSample.csproj"
-  ANDROID_PROJECT_PATH: "samples/GanttChartSample/GanttChartSample.Android/GanttChartSample.Android.csproj"
-  CONFIGURATION: "Debug"
+  CORE_PROJECT_PATH: samples/GanttChartSample/GanttChartSample/GanttChartSample.csproj
+  LIBRARY_PROJECT_PATH: src/GanttChart/GanttChart.csproj
+  ANDROID_PROJECT_PATH: samples/GanttChartSample/GanttChartSample.Android/GanttChartSample.Android.csproj
+  CONFIGURATION: Debug
 
 on:
   push:
@@ -31,6 +32,7 @@ jobs:
         
     - name: Install dependencies
       run: |
+        nuget restore ${{ env.LIBRARY_PROJECT_PATH }}
         nuget restore ${{ env.CORE_PROJECT_PATH }}
         nuget restore ${{ env.ANDROID_PROJECT_PATH }}
 
