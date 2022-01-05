@@ -1,8 +1,8 @@
 name: GanttChart-CI
 
 env:
-  CORE_PROJECT_PATH: "GanttChart/samples/GanttChartSample/GanttChartSample/GanttChartSample.csproj"
-  ANDROID_PROJECT_PATH: "GanttChart/samples/GanttChartSample/GanttChartSample.Android/GanttChartSample.Android.csproj"
+  CORE_PROJECT_PATH: "samples/GanttChartSample/GanttChartSample/GanttChartSample.csproj"
+  ANDROID_PROJECT_PATH: "samples/GanttChartSample/GanttChartSample.Android/GanttChartSample.Android.csproj"
   CONFIGURATION: "Debug"
 
 on:
@@ -40,4 +40,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: Android App
-        path: GanttChart/samples/GanttChartSample/GanttChartSample.Android/bin/Debug/com.incompany.ganttchartsample-Signed.apk   
+        path: samples/GanttChartSample/GanttChartSample.Android/bin/Debug/com.incompany.ganttchartsample-Signed.apk   
